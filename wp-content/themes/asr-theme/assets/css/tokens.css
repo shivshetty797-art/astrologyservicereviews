@@ -1,0 +1,81 @@
+:root {
+    /* Colors */
+    --color-primary: #D4A843;
+    --color-primary-hover: #E0BA5A;
+    --color-secondary: #111827;
+    --color-accent: #F59E0B;
+    --color-accent-purple: #7C3AED;
+    --color-bg: #0F172A;
+    --color-bg-alt: #1E293B;
+    --color-bg-card: #1E293B;
+    --color-bg-card-hover: #263548;
+    --color-text: #F9FAFB;
+    --color-text-muted: #94A3B8;
+    --color-text-dim: #64748B;
+    --color-border: #334155;
+    --color-border-light: #475569;
+    --color-star: #F59E0B;
+    --color-star-empty: #475569;
+    --color-success: #10B981;
+    --color-warning: #F59E0B;
+    --color-danger: #EF4444;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+    --gradient-gold: linear-gradient(135deg, #D4A843, #F59E0B);
+    --gradient-card: linear-gradient(180deg, #1E293B 0%, #0F172A 100%);
+
+    /* Typography */
+    --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+    --fw-extrabold: 800;
+
+    --fs-xs: 0.75rem;
+    --fs-sm: 0.875rem;
+    --fs-base: 1rem;
+    --fs-lg: 1.125rem;
+    --fs-xl: 1.25rem;
+    --fs-2xl: 1.5rem;
+    --fs-3xl: 1.875rem;
+    --fs-4xl: 2.25rem;
+    --fs-5xl: 3rem;
+    --lh-tight: 1.2;
+    --lh-normal: 1.5;
+    --lh-relaxed: 1.75;
+
+    /* Spacing */
+    --sp-1: 4px;
+    --sp-2: 8px;
+    --sp-3: 12px;
+    --sp-4: 16px;
+    --sp-5: 20px;
+    --sp-6: 24px;
+    --sp-8: 32px;
+    --sp-10: 40px;
+    --sp-12: 48px;
+    --sp-16: 64px;
+    --sp-20: 80px;
+    --section-py: 80px;
+
+    /* Layout */
+    --container-max: 1200px;
+    --container-narrow: 800px;
+    --container-px: 24px;
+
+    /* Borders & Shadows */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+    --shadow-lg: 0 8px 30px rgba(0,0,0,0.5);
+    --shadow-glow: 0 0 20px rgba(212,168,67,0.15);
+    --transition: 0.2s ease;
+    --transition-slow: 0.4s ease;
+}
