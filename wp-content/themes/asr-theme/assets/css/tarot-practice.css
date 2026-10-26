@@ -1,0 +1,55 @@
+.practice {
+  --pt-ink: #18263d; --pt-muted: #536174; --pt-gold: #c4954c; --pt-night: #101b32;
+  max-width: 1180px; margin: 0 auto; padding: 56px 24px 28px; color: var(--pt-ink);
+}
+.practice__intro { max-width: 760px; margin: 0 auto 30px; text-align: center; }
+.practice__eyebrow { margin: 0 0 10px; color: #896735; text-transform: uppercase; letter-spacing: .13em; font-size: .75rem; font-weight: 800; }
+.practice__intro h2 { max-width: 720px; margin: 0 auto 12px; font: 500 clamp(2rem,4vw,3.35rem)/1.12 Georgia,serif; letter-spacing: -.025em; }
+.practice__intro>p:last-child { max-width: 650px; margin: 0 auto; color: var(--pt-muted); font-size: 1.05rem; line-height: 1.7; }
+.practice__panel { max-width: 1050px; margin: auto; padding: clamp(22px,4vw,46px); border: 1px solid #e5ddce; border-radius: 22px; background: linear-gradient(145deg,#fffefa,#f6f0e4); box-shadow: 0 24px 70px #1a253014; }
+.practice__label { display: block; margin: 0 0 9px; font-weight: 700; }
+.practice textarea { display: block; width: 100%; min-height: 60px; padding: 14px 16px; border: 1px solid #c8c2b6; border-radius: 12px; background: #fff; color: var(--pt-ink); font: inherit; line-height: 1.5; resize: vertical; }
+.practice textarea:focus-visible,.practice button:focus-visible,.practice a:focus-visible { outline: 3px solid #997135; outline-offset: 3px; }
+.practice__suggestions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 20px; }
+.practice__suggestions button,.practice__secondary { border: 1px solid #d6c9b4; border-radius: 999px; background: #fff; color: #34445c; padding: 8px 13px; font: inherit; font-size: .9rem; cursor: pointer; }
+.practice__suggestions button:hover,.practice__secondary:hover { background: #f3ead8; }
+.practice__draw { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; min-height: 58px; border: 0; border-radius: 12px; background: var(--pt-night); color: #fff; font: inherit; font-weight: 750; font-size: 1.05rem; cursor: pointer; transition: transform .2s,background .2s; }
+.practice__draw:hover { background: #263652; transform: translateY(-1px); }
+.practice__draw span { color: #e9c78c; }
+.practice__hint { margin: 10px 0 0; color: #6b7280; font-size: .85rem; text-align: center; }
+.practice__result { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin-top: 30px; }
+.practice-card { min-width: 0; text-align: center; animation: practice-rise .5s both; }
+.practice-card:nth-child(2) { animation-delay: .12s; }.practice-card:nth-child(3) { animation-delay: .24s; }
+@keyframes practice-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.practice-card__position { margin: 0 0 10px; color: #7e643d; text-transform: uppercase; letter-spacing: .12em; font-size: .7rem; font-weight: 800; }
+.practice-card__frame { max-width: 236px; margin: 0 auto 14px; padding: 8px; border: 1px solid #d2b478; border-radius: 13px; background: linear-gradient(145deg,#253a54,#111d33 68%,#4a3827); box-shadow: 0 12px 25px #19283b24; }
+.practice-card__art { display: block; width: 100%; aspect-ratio: 3/4; overflow: hidden; border-radius: 7px; background: #172743; }
+.practice-card__art svg { display:block;width:100%;height:100%; }
+.practice-card__frame--reversed .practice-card__art { transform: rotate(180deg); }
+.practice-card__name { margin: 0; color: #17253c; font: 600 1.35rem Georgia,serif; }
+.practice-card__orientation { margin: 4px 0 8px; color: #8c6b3d; font-size: .84rem; font-weight: 700; }
+.practice-card__meaning,.practice-card__question { max-width: 300px; margin: 0 auto; color: #475366; font-size: .95rem; line-height: 1.6; }
+.practice-card__question { margin-top: 10px; color: #263652; font-size: .9rem; font-style: italic; }
+.practice__after { margin-top: 34px; padding-top: 28px; border-top: 1px solid #ded5c6; }
+.practice__actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 13px; }
+.practice__secondary { border-radius: 10px; padding: 10px 14px; font-weight: 650; }
+.practice__status { min-height: 1.4em; margin: 10px 0 0; color: #346047; font-size: .9rem; }
+.practice__journal { margin-top: 32px; padding-top: 24px; border-top: 1px solid #ded5c6; }
+.practice__journal-head { display:flex;align-items:center;justify-content:space-between;gap:10px; }
+.practice__journal h3,.practice__boundaries h3,.practice__sponsor h3 { margin: 0 0 10px; font: 600 1.35rem Georgia,serif; }
+.practice__text-button { border:0;background:transparent;color:#7a4338;text-decoration:underline;cursor:pointer;font:inherit;font-size:.85rem; }
+.practice__journal-empty { color:var(--pt-muted);font-size:.9rem; }
+.practice__history { display:grid;gap:10px;margin:14px 0 0;padding:0;list-style:none; }
+.practice__history li { padding:14px 16px;border:1px solid #e7dfd2;border-radius:12px;background:#fff; }
+.practice__history time { display:block;color:#7c684c;font-size:.78rem; }
+.practice__history strong { display:block;margin:4px 0;color:#25354b; }
+.practice__history p { margin:4px 0 0;color:#596779;font-size:.9rem;line-height:1.5;overflow-wrap:anywhere; }
+.practice__boundaries { max-width:940px;margin:26px auto 0;padding:24px 28px;border-left:3px solid #ba9151;background:#f6f1e7; }
+.practice__boundaries p,.practice__sponsor p { margin:8px 0;color:#525e6d;line-height:1.65; }
+.practice__sponsor { max-width:940px;margin:18px auto 0;padding:21px 25px;border:1px solid #e6ddd0;border-radius:14px;background:#fff; }
+.practice__sponsor-label { display:inline-block;padding:4px 8px;border-radius:4px;background:#f5ebda;color:#785a2d;text-transform:uppercase;letter-spacing:.1em;font-size:.7rem;font-weight:800; }
+.practice__sponsor h3 { margin-top:5px; }
+.practice__sponsor-link { display:inline-flex;align-items:center;gap:9px;margin-top:4px;color:#253a54;font-weight:750;text-decoration-thickness:1px;text-underline-offset:3px; }
+.practice__sponsor-link span { color:#9a7338; }
+@media(max-width:760px) { .practice{padding:42px 16px 20px}.practice__result{grid-template-columns:1fr;gap:24px}.practice__actions{flex-direction:column}.practice__secondary{width:100%}.practice__panel{border-radius:16px}.practice__boundaries{padding:20px} }
+@media(prefers-reduced-motion:reduce) { .practice-card,.practice__draw{animation:none;transition:none} }

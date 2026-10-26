@@ -1,0 +1,9 @@
+# START YOAST BLOCK
+# ---------------------------
+User-agent: *
+Disallow:
+Disallow: /go/
+
+Sitemap: https://astrologyservicereviews.net/sitemap.xml
+# ---------------------------
+# END YOAST BLOCK
