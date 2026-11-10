@@ -1,0 +1,63 @@
+</main>
+
+<footer class="site-footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="site-logo">
+                    <span class="site-logo__icon"><?php echo asr_svg_icon( 'star' ); ?></span>
+                    <span><?php bloginfo( 'name' ); ?></span>
+                </a>
+                <p class="footer-brand__desc"><?php bloginfo( 'description' ); ?></p>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-col__title"><?php esc_html_e( 'Explore', 'asr-theme' ); ?></h4>
+                <ul class="footer-col__list">
+                    <li><a href="<?php echo esc_url( home_url( '/astrology/' ) ); ?>"><?php esc_html_e( 'Astrology Guides', 'asr-theme' ); ?></a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/psychic-platform-reviews/' ) ); ?>"><?php esc_html_e( 'Platform Guides', 'asr-theme' ); ?></a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/tarot-tools/' ) ); ?>"><?php esc_html_e( 'Tarot Tools', 'asr-theme' ); ?></a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/zodiac-signs/' ) ); ?>"><?php esc_html_e( 'Zodiac Signs', 'asr-theme' ); ?></a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-col__title"><?php esc_html_e( 'Resources', 'asr-theme' ); ?></h4>
+                <ul class="footer-col__list">
+                    <li><a href="<?php echo esc_url( home_url( '/blog/' ) ); ?>"><?php esc_html_e( 'Blog', 'asr-theme' ); ?></a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/how-we-review/' ) ); ?>"><?php esc_html_e( 'How We Review', 'asr-theme' ); ?></a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/about/' ) ); ?>"><?php esc_html_e( 'About Us', 'asr-theme' ); ?></a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 class="footer-col__title"><?php esc_html_e( 'Legal', 'asr-theme' ); ?></h4>
+                <ul class="footer-col__list">
+                    <?php
+                    $legal_links = array(
+                        'privacy-policy' => __( 'Privacy Policy', 'asr-theme' ),
+                        'cookie-policy'  => __( 'Cookie Policy', 'asr-theme' ),
+                        'terms'          => __( 'Terms of Use', 'asr-theme' ),
+                        'disclaimer'     => __( 'Disclaimer', 'asr-theme' ),
+                    );
+                    foreach ( $legal_links as $legal_slug => $legal_label ) {
+                        $legal_page = get_page_by_path( $legal_slug );
+                        if ( $legal_page && 'publish' === $legal_page->post_status ) {
+                            printf( '<li><a href="%s">%s</a></li>', esc_url( home_url( '/' . $legal_slug . '/' ) ), esc_html( $legal_label ) );
+                        }
+                    }
+                    ?>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>&copy; <?php echo esc_html( date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. All rights reserved.</span>
+            <span>Editorial guides for thoughtful choices.</span>
+        </div>
+    </div>
+</footer>
+
+<?php wp_footer(); ?>
+</body>
+</html>
