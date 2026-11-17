@@ -1,0 +1,94 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+define( 'ASR_VERSION', '1.0.0' );
+define( 'ASR_DIR', get_template_directory() );
+define( 'ASR_URI', get_template_directory_uri() );
+
+function asr_setup() {
+    add_theme_support( 'title-tag' );
+    add_theme_support( 'post-thumbnails' );
+    add_theme_support( 'html5', ['search-form','comment-form','comment-list','gallery','caption','style','script'] );
+    add_theme_support( 'custom-logo', ['height' => 40, 'width' => 200, 'flex-height' => true, 'flex-width' => true] );
+
+    register_nav_menus([
+        'primary' => __( 'Primary Menu', 'asr-theme' ),
+        'footer'  => __( 'Footer Menu', 'asr-theme' ),
+    ]);
+}
+add_action( 'after_setup_theme', 'asr_setup' );
+
+function asr_enqueue_assets() {
+    wp_enqueue_style( 'asr-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap', [], null );
+    wp_enqueue_style( 'asr-tokens', ASR_URI . '/assets/css/tokens.css', [], ASR_VERSION );
+    wp_enqueue_style( 'asr-components', ASR_URI . '/assets/css/components.css', ['asr-tokens'], ASR_VERSION );
+    wp_enqueue_style( 'asr-catalog', ASR_URI.'/assets/css/catalog.css', ['asr-components'], ASR_VERSION );
+    if ( is_post_type_archive('psychic') || is_singular('psychic') || is_tax('psychic_specialty') || is_tax('psychic_skill') ) {
+        wp_enqueue_script( 'asr-catalog', ASR_URI.'/assets/js/catalog.js', [], ASR_VERSION, true );
+    }
+    wp_enqueue_style( 'asr-layouts', ASR_URI . '/assets/css/layouts.css', ['asr-tokens'], ASR_VERSION );
+    if ( is_front_page() ) {
+        $editorial_css = ASR_DIR . '/assets/css/editorial-home.css';
+        wp_enqueue_style( 'asr-editorial-home', ASR_URI . '/assets/css/editorial-home.css', ['asr-layouts'], filemtime( $editorial_css ) );
+        $practice_css = ASR_DIR . '/assets/css/tarot-practice.css';
+        $practice_js = ASR_DIR . '/assets/js/tarot-practice.js';
+        wp_enqueue_style( 'asr-tarot-practice', ASR_URI . '/assets/css/tarot-practice.css', ['asr-editorial-home'], filemtime( $practice_css ) );
+        wp_enqueue_script( 'asr-tarot-practice', ASR_URI . '/assets/js/tarot-practice.js', [], filemtime( $practice_js ), true );
+    }
+    if ( is_page_template( 'page-review.php' ) ) {
+        wp_enqueue_style( 'asr-review', ASR_URI . '/assets/css/review.css', ['asr-tokens'], ASR_VERSION );
+    }
+    wp_enqueue_script( 'asr-navigation', ASR_URI . '/assets/js/navigation.js', [], ASR_VERSION, true );
+}
+add_action( 'wp_enqueue_scripts', 'asr_enqueue_assets' );
+
+function asr_editorial_home_title( $title ) {
+    return is_front_page() ? 'Three-Card Tarot Practice Table | Astrology Service Reviews' : $title;
+}
+add_filter( 'wpseo_title', 'asr_editorial_home_title' );
+add_filter( 'wpseo_opengraph_title', 'asr_editorial_home_title' );
+add_filter( 'wpseo_twitter_title', 'asr_editorial_home_title' );
+
+function asr_editorial_home_description( $description ) {
+    return is_front_page() ? 'Draw a three-card tarot spread, explore reflective prompts, and keep notes in your browser. No account or public discussion; share practice invitations yourself.' : $description;
+}
+add_filter( 'wpseo_metadesc', 'asr_editorial_home_description' );
+add_filter( 'wpseo_opengraph_desc', 'asr_editorial_home_description' );
+add_filter( 'wpseo_twitter_description', 'asr_editorial_home_description' );
+
+function asr_editorial_home_image( $image ) {
+    return is_front_page() ? ASR_URI . '/assets/img/celestial-chart-hero.webp' : $image;
+}
+add_filter( 'wpseo_opengraph_image', 'asr_editorial_home_image' );
+add_filter( 'wpseo_twitter_image', 'asr_editorial_home_image' );
+
+require_once ASR_DIR . '/inc/template-tags.php';
+require_once ASR_DIR . '/inc/cpt-psychic.php';
+require_once ASR_DIR . '/inc/cpt-tarot-card.php';
+require_once ASR_DIR . '/inc/reviews.php';
+
+/* ── Strip scraped script artifacts from psychic content ────── */
+function asr_clean_psychic_content( $content ) {
+    if ( get_post_type() !== 'psychic' ) return $content;
+    $content = preg_replace( '/window\.\w+\s*=\s*["{].*?["}];?\s*/s', '', $content );
+    $content = preg_replace( '/<script[^>]*>.*?<\/script>/si', '', $content );
+    return trim( $content );
+}
+add_filter( 'the_content', 'asr_clean_psychic_content', 5 );
+/* homeblocks-slot */ require_once get_template_directory() . '/inc/homeblocks.php';
+
+/* === BEGIN catalog-filter module (asr) — wp-net-control rollout === */
+require_once get_template_directory() . '/inc/catalog-index.php';
+
+function asr_catalog_filter_enqueue() {
+    if ( is_post_type_archive( 'psychic' ) || is_tax( 'psychic_specialty' ) || is_tax( 'psychic_skill' ) ) {
+        $dir = get_template_directory();
+        $uri = get_template_directory_uri();
+        $css = $dir . '/assets/css/catalog-filter.css';
+        $js  = $dir . '/assets/js/catalog-filter.js';
+        wp_enqueue_style( 'asr-catalog-filter', $uri . '/assets/css/catalog-filter.css', array(), file_exists( $css ) ? filemtime( $css ) : '1.0.0' );
+        wp_enqueue_script( 'asr-catalog-filter', $uri . '/assets/js/catalog-filter.js', array(), file_exists( $js ) ? filemtime( $js ) : '1.0.0', true );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'asr_catalog_filter_enqueue', 20 );
+/* === END catalog-filter module (asr) — wp-net-control rollout === */
